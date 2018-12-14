@@ -1,0 +1,19 @@
+﻿{
+  "timestamp": "2018-06-18T22:10:01.00Z",
+  "referenceId": "unique-id-of-this-instance",
+  "expiryTime": "2018-06-19T22:10:01.00Z",
+  "event": {
+    "name": "test" 
+  },
+  "localizedAttributes": [
+    {
+      "locale": "en-GB",
+      "testy": "thing" 
+    }],
+  "relevantAudience": {
+    "type": "Unicast",
+    "payload": {
+      "user": "userId"
+    }
+  }
+}
