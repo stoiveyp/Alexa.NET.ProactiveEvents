@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
 
@@ -57,6 +58,23 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 Type = WeatherAlertType.Tornado
             });
             Assert.True(Utility.CompareJson(weatherAlert,"WeatherAlert.json"));
+        }
+
+        [Fact]
+        public void SoccerScoreUpdate()
+        {
+            var soccerScore = new SoccerScoreUpdate
+            {
+                Payload = new SoccerScoreUpdatePayload
+                {
+                    Update = new SoccerScoreUpdateDetail("Arsenal", 1),
+                    Event = new SoccerScoreSportsEvent(
+                        "localizedattribute:eventLeagueName",
+                        new SoccerScoreTeamStatistics("Oranges",1),
+                        new SoccerScoreTeamStatistics("Apples",2))
+                }
+            };
+            Assert.True(Utility.CompareJson(soccerScore,"SoccerScore.json"));
         }
     }
 }

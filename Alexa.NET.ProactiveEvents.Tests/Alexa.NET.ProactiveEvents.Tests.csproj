@@ -23,6 +23,9 @@
     <None Update="Examples\Individual.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Examples\SoccerScore.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Examples\WeatherAlert.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
