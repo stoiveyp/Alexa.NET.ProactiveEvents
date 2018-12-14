@@ -1,0 +1,9 @@
+﻿{
+	"name": "AMAZON.WeatherAlert.Activated",
+	"payload": {
+		"weatherAlert": {
+			"source": "localizedattribute:source",
+			"alertType": "TORNADO"
+		}
+	}
+}

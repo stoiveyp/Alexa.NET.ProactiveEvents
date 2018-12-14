@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
 
 namespace Alexa.NET.ProactiveEvents.Tests
@@ -45,6 +46,17 @@ namespace Alexa.NET.ProactiveEvents.Tests
             };
 
             Assert.True(Utility.CompareJson(userEvent, "Broadcast.json"));
+        }
+
+        [Fact]
+        public void WeatherAlert()
+        {
+            var weatherAlert = new WeatherAlert(new WeatherAlertPayloadData
+            {
+                Source = "localizedattribute:source",
+                Type = WeatherAlertType.Tornado
+            });
+            Assert.True(Utility.CompareJson(weatherAlert,"WeatherAlert.json"));
         }
     }
 }

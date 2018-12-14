@@ -9,9 +9,9 @@ namespace Alexa.NET.ProactiveEvents
         public abstract string Name { get; }
     }
 
-    public abstract class ProtactiveEvent<T> : ProactiveEvent where T:IProactiveEventPayload
+    public abstract class ProactiveEvent<T> : ProactiveEvent where T:IProactiveEventPayload
     {
         [JsonProperty("payload")]
-        public abstract T Payload { get; set; }
+        public T Payload { get; set; }
     }
 }
