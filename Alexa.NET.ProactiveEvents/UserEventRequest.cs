@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Alexa.NET.ProactiveEvents.AudienceTypes;
 
 namespace Alexa.NET.ProactiveEvents
 {

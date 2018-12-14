@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.ProactiveEvents.WeatherAlerts
 {
-    public class WeatherAlertPayload: IProactiveEventPayload
+    public class WeatherAlertPayload
     {
         public WeatherAlertPayload(WeatherAlertPayloadData data)
         {

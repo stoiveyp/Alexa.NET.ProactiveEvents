@@ -1,4 +1,6 @@
-﻿namespace Alexa.NET.ProactiveEvents
+﻿using Alexa.NET.ProactiveEvents.AudienceTypes;
+
+namespace Alexa.NET.ProactiveEvents
 {
     public class BroadcastEventRequest : ProactiveEventRequest<MulticastAudienceType>
     {
