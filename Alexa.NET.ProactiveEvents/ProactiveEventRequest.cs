@@ -5,7 +5,15 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.ProactiveEvents
 {
-    public abstract class ProactiveEventRequest<T> where T:AudienceType
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+    public abstract class ProactiveEventRequest<TAudienceType> : ProactiveEventRequest where TAudienceType : AudienceType
+    {
+        [JsonProperty("relevantAudience")]
+        public TAudienceType Audience { get; protected set; }
+    }
+
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+    public abstract class ProactiveEventRequest
     {
         [JsonProperty("timestamp")]
         public DateTimeOffset TimeStamp { get; set; }
@@ -17,7 +25,5 @@ namespace Alexa.NET.ProactiveEvents
         public ProactiveEvent Event { get; set; }
         [JsonProperty("localizedAttributes")]
         public List<LocaleAttributes> LocaleAttributes { get; set; }
-        [JsonProperty("relevantAudience")]
-        public T Audience { get; protected set; }
     }
 }

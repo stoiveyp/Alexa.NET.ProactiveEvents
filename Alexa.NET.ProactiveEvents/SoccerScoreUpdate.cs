@@ -5,24 +5,23 @@ namespace Alexa.NET.ProactiveEvents
 {
     public class SoccerScoreUpdate:ProactiveEvent<SoccerScoreUpdatePayload>
     {
-        public SoccerScoreUpdate() { }
+        public SoccerScoreUpdate():base("AMAZON.SportsEvent.Updated") { }
 
-        public SoccerScoreUpdate(SoccerScoreUpdatePayload payload)
+        public SoccerScoreUpdate(SoccerScoreUpdatePayload payload):this()
         {
             Payload = payload;
         }
 
         public SoccerScoreUpdate(SoccerScoreSportsEvent eventInformation)
+        :this(new SoccerScoreUpdatePayload(eventInformation))
         {
-            Payload = new SoccerScoreUpdatePayload(eventInformation);
+            
         }
 
         public SoccerScoreUpdate(SoccerScoreUpdateDetail update, SoccerScoreSportsEvent eventInformation)
+        :this(new SoccerScoreUpdatePayload(eventInformation, update))
         {
-            Payload = new SoccerScoreUpdatePayload(eventInformation,update);
+            
         }
-
-        [JsonProperty("name")]
-        public override string Name => "AMAZON.SportsEvent.Updated";
     }
 }

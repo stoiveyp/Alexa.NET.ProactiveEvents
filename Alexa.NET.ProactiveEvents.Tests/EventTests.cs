@@ -29,7 +29,7 @@ namespace Alexa.NET.ProactiveEvents.Tests
 
         private class DummyEvent : ProactiveEvent
         {
-            public override string Name => "test";
+            public DummyEvent() : base("test") { }
         }
 
         [Fact]

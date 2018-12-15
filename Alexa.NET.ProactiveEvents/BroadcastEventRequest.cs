@@ -8,5 +8,10 @@ namespace Alexa.NET.ProactiveEvents
         {
             Audience = new MulticastAudienceType();
         }
+
+        public BroadcastEventRequest(ProactiveEvent proactiveEvent):this()
+        {
+            Event = proactiveEvent;
+        }
     }
 }

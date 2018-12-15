@@ -11,5 +11,10 @@ namespace Alexa.NET.ProactiveEvents
         {
             Audience = new UnicastAudienceType(userId);
         }
+
+        public UserEventRequest(string userId, ProactiveEvent proactiveEvent) : this(userId)
+        {
+            Event = proactiveEvent;
+        }
     }
 }
