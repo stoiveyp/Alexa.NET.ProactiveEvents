@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Alexa.NET.ProactiveEvents.MessageReminders;
 using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
@@ -52,29 +53,32 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void WeatherAlert()
         {
-            var weatherAlert = new WeatherAlert(new WeatherAlertPayloadData
-            {
-                Source = "localizedattribute:source",
-                Type = WeatherAlertType.Tornado
-            });
-            Assert.True(Utility.CompareJson(weatherAlert,"WeatherAlert.json"));
+            var weatherAlert = new WeatherAlert(WeatherAlertType.Tornado, "localizedattribute:source");
+            Assert.True(Utility.CompareJson(weatherAlert, "WeatherAlert.json"));
         }
 
         [Fact]
         public void SoccerScoreUpdate()
         {
             var soccerScore = new SoccerScoreUpdate
-            {
-                Payload = new SoccerScoreUpdatePayload
-                {
-                    Update = new SoccerScoreUpdateDetail("Arsenal", 1),
-                    Event = new SoccerScoreSportsEvent(
-                        "localizedattribute:eventLeagueName",
-                        new SoccerScoreTeamStatistics("Oranges",1),
-                        new SoccerScoreTeamStatistics("Apples",2))
-                }
-            };
-            Assert.True(Utility.CompareJson(soccerScore,"SoccerScore.json"));
+            (
+                new SoccerScoreUpdateDetail("Arsenal", 1),
+                new SoccerScoreSportsEvent(
+                    "localizedattribute:eventLeagueName",
+                    new SoccerScoreTeamStatistics("Oranges", 1),
+                    new SoccerScoreTeamStatistics("Apples", 2))
+            );
+            Assert.True(Utility.CompareJson(soccerScore, "SoccerScore.json"));
+        }
+
+        [Fact]
+        public void MessageReminder()
+        {
+
+            var state = new MessageReminderState(MessageReminderStatus.Unread, MessageReminderFreshness.New);
+            var group = new MessageReminderGroup("Andy", 5, MessageReminderUrgency.Urgent);
+            var messageReminder = new MessageReminder(state, group);
+            Assert.True(Utility.CompareJson(messageReminder, "MessageReminder.json"));
         }
     }
 }

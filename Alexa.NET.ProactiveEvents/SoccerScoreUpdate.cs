@@ -12,9 +12,14 @@ namespace Alexa.NET.ProactiveEvents
             Payload = payload;
         }
 
+        public SoccerScoreUpdate(SoccerScoreSportsEvent eventInformation)
+        {
+            Payload = new SoccerScoreUpdatePayload(eventInformation);
+        }
+
         public SoccerScoreUpdate(SoccerScoreUpdateDetail update, SoccerScoreSportsEvent eventInformation)
         {
-            Payload = new SoccerScoreUpdatePayload(update, eventInformation);
+            Payload = new SoccerScoreUpdatePayload(eventInformation,update);
         }
 
         [JsonProperty("name")]
