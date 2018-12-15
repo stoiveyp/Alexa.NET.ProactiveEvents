@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Alexa.NET.ProactiveEvents.MessageReminders;
-
-namespace Alexa.NET.ProactiveEvents
+﻿namespace Alexa.NET.ProactiveEvents.MessageReminders
 {
     public class MessageReminder:ProactiveEvent<MessageReminderPayload>
     {

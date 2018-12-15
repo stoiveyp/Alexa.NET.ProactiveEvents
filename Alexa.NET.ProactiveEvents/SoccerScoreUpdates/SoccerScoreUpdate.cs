@@ -1,7 +1,4 @@
-﻿using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
-using Newtonsoft.Json;
-
-namespace Alexa.NET.ProactiveEvents
+﻿namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
 {
     public class SoccerScoreUpdate:ProactiveEvent<SoccerScoreUpdatePayload>
     {

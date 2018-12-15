@@ -80,5 +80,11 @@ namespace Alexa.NET.ProactiveEvents.Tests
             var messageReminder = new MessageReminder(state, group);
             Assert.True(Utility.CompareJson(messageReminder, "MessageReminder.json"));
         }
+
+        [Fact]
+        public void OrderUpdate()
+        {
+
+        }
     }
 }

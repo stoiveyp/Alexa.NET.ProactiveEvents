@@ -1,6 +1,6 @@
-﻿using Alexa.NET.ProactiveEvents.WeatherAlerts;
+﻿
 
-namespace Alexa.NET.ProactiveEvents
+namespace Alexa.NET.ProactiveEvents.WeatherAlerts
 {
     public class WeatherAlert : ProactiveEvent<WeatherAlertPayload>
     {
