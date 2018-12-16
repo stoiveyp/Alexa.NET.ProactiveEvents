@@ -5,6 +5,7 @@ using Alexa.NET.ProactiveEvents.MessageReminders;
 using Alexa.NET.ProactiveEvents.OrderStatusUpdates;
 using Alexa.NET.ProactiveEvents.ReservationConfirmations;
 using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
+using Alexa.NET.ProactiveEvents.TrashCollectionReminders;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
 
@@ -100,13 +101,20 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             OccasionType type = OccasionType.Appointment;
             DateTimeOffset bookingTime = DateTimeOffset.Parse("2018-11-20T19:16:31+00:00");
-            string providerName= "localizedattribute:providerName";
-            string subject= "localizedattribute:subject";
-            string brokerName= "localizedattribute:brokerName";
+            string providerName = "localizedattribute:providerName";
+            string subject = "localizedattribute:subject";
+            string brokerName = "localizedattribute:brokerName";
             var occasionUpdate = new ReservationConfirmation(ConfirmationStatus.Confirmed,
-                new Occasion(type,bookingTime,providerName,subject,brokerName));
+                new Occasion(type, bookingTime, providerName, subject, brokerName));
 
-            Assert.True(Utility.CompareJson(occasionUpdate,"ReservationConfirmation.json"));
+            Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json"));
+        }
+
+        [Fact]
+        public void TrashCollectionReminder()
+        {
+            var reminder = new TrashCollectionReminder(DayOfWeek.Tuesday, GarbageType.Compostable, GarbageType.RecyclablePlastics);
+            Assert.True(Utility.CompareJson(reminder, "TrashCollectionReminder.json"));
         }
     }
 }
