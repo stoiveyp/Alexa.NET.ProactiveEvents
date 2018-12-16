@@ -23,6 +23,9 @@
     <None Update="Examples\Individual.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Examples\MediaContentAvailability.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Examples\MessageReminder.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

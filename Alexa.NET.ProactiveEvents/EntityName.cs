@@ -7,6 +7,7 @@ namespace Alexa.NET.ProactiveEvents
 {
     public class EntityName
     {
+        public EntityName() { }
         public EntityName(string name)
         {
             Name = name;

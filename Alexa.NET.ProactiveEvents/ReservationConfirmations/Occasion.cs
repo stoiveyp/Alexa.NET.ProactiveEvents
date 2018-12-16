@@ -25,7 +25,10 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
             string subject,
             string brokerName) : this(type, bookingTime, providerName, subject)
         {
-            Broker = new EntityName(brokerName);
+            if (!string.IsNullOrWhiteSpace(brokerName))
+            {
+                Broker = new EntityName(brokerName);
+            }
         }
 
         [JsonProperty("occasionType"), JsonConverter(typeof(StringEnumConverter))]

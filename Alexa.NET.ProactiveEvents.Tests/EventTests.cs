@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification;
 using Alexa.NET.ProactiveEvents.MessageReminders;
 using Alexa.NET.ProactiveEvents.OrderStatusUpdates;
 using Alexa.NET.ProactiveEvents.ReservationConfirmations;
@@ -115,6 +116,21 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             var reminder = new TrashCollectionReminder(DayOfWeek.Tuesday, GarbageType.Compostable, GarbageType.RecyclablePlastics);
             Assert.True(Utility.CompareJson(reminder, "TrashCollectionReminder.json"));
+        }
+
+        [Fact]
+        public void MediaContentAvailabilityTest()
+        {
+            var media = new MediaContentAvailability(
+                new MediaContentAvailabilityDetail(
+                    DateTimeOffset.Parse("2018-11-20T21:00:00+00:00"),
+                    MediaContentMethod.Air,
+                    "localizedattribute:providerName"),
+                new MediaContent(
+                    "localizedattribute:contentName",
+                    MediaContentType.Book)
+            );
+            Assert.True(Utility.CompareJson(media, "MediaContentAvailability.json"));
         }
     }
 }
