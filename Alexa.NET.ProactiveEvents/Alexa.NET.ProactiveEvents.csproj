@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Description>Small library to help with the Alexa ProactiveEvents API</Description>
+    <PackageLicenseUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</RepositoryUrl>
+    <PackageTags>alexa,api</PackageTags>
+    <PackageReleaseNotes>Initial API and events support</PackageReleaseNotes>
+    <Authors>Steven Pears</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
