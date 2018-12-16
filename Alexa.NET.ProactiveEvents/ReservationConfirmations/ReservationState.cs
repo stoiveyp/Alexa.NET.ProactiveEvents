@@ -5,12 +5,12 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
 {
     public class ReservationState
     {
-        public ReservationState(ConfirmationStatus status)
+        public ReservationState(ReservationConfirmationStatus status)
         {
             ConfirmationStatus = status;
         }
 
         [JsonProperty("confirmationStatus"), JsonConverter(typeof(StringEnumConverter))]
-        public ConfirmationStatus ConfirmationStatus { get; set; }
+        public ReservationConfirmationStatus ConfirmationStatus { get; set; }
     }
 }

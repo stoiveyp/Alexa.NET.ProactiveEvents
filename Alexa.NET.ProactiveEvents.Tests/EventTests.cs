@@ -106,7 +106,7 @@ namespace Alexa.NET.ProactiveEvents.Tests
             string providerName = "localizedattribute:providerName";
             string subject = "localizedattribute:subject";
             string brokerName = "localizedattribute:brokerName";
-            var occasionUpdate = new ReservationConfirmation(ConfirmationStatus.Confirmed,
+            var occasionUpdate = new ReservationConfirmation(ReservationConfirmationStatus.Confirmed,
                 new Occasion(type, bookingTime, providerName, subject, brokerName));
 
             Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json"));
