@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Alexa.NET.ProactiveEvents.MessageReminders;
+using Alexa.NET.ProactiveEvents.OrderStatusUpdates;
 using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
@@ -84,7 +85,12 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void OrderUpdate()
         {
-
+            var orderStatusUpdate = new OrderStatusUpdate("localizedattribute:sellerName", OrderStatus.Shipped);
+            orderStatusUpdate.Payload.State.DeliveryDetails = new ParcelDelivery
+            {
+                ExpectedArrival = DateTimeOffset.Parse("2018-12-14T23:32:00.463Z")
+            };
+            Assert.True(Utility.CompareJson(orderStatusUpdate, "OrderStatus.json"));
         }
     }
 }

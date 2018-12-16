@@ -4,7 +4,7 @@
 		"state": {
 			"status": "ORDER_SHIPPED",
 			"deliveryDetails": {
-				"expectedArrival": "2018-12-14T23:32:00.463Z"
+				"expectedArrival": "2018-12-14T23:32:00.463+00:00"
 			}
 		},
 		"order": {
