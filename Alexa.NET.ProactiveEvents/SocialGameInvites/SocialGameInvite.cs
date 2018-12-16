@@ -28,7 +28,7 @@ namespace Alexa.NET.ProactiveEvents.SocialGameInvites
 
         public bool ShouldSerializeLocalizedAttributes()
         {
-            return LocalizedAttributes.Any();
+            return LocalizedAttributes?.Any() ?? false;
         }
     }
 
