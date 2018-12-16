@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
 {
-    public enum ConfirmationStatus
+    public enum ReservationConfirmationStatus
     {
         [EnumMember(Value = "CONFIRMED")] Confirmed,
         [EnumMember(Value = "CANCELED")] Canceled,

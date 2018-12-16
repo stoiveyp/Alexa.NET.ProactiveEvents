@@ -9,7 +9,7 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
         {
         }
 
-        public ReservationConfirmation(ConfirmationStatus status, Occasion occasion):this()
+        public ReservationConfirmation(ReservationConfirmationStatus status, Occasion occasion):this()
         {
             Payload = new ReservationConfirmationPayload(status,occasion);
         }
