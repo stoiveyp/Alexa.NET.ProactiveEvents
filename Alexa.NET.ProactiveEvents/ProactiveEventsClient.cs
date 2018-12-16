@@ -55,25 +55,7 @@ namespace Alexa.NET.ProactiveEvents
             Client = client;
         }
 
-        //public async Task<NotificationInfo> Create(CreateUpdateRequest request)
-        //{
-        //    var content = JObject.FromObject(request).ToString(Formatting.None);
-        //    Console.WriteLine(content);
-        //    var response = await Client.PostAsync(Client.BaseAddress,
-        //        new StringContent(content, Encoding.UTF8, "application/json"));
-
-        //    using (var reader = new JsonTextReader(new StreamReader(await response.Content.ReadAsStreamAsync())))
-        //    {
-        //        if (response.StatusCode == HttpStatusCode.Created)
-        //        {
-        //            return Serializer.Deserialize<NotificationInfo>(reader);
-        //        }
-
-        //        var info = Serializer.Deserialize<NotificationExceptionInfo>(reader);
-        //        throw new SkillNotificationException(info);
-        //    }
-        //}
-        public async Task Send<TAudienceType>(ProactiveEventRequest<TAudienceType> request) where TAudienceType : AudienceType
+        public Task<HttpResponseMessage> Send<TAudienceType>(ProactiveEventRequest<TAudienceType> request) where TAudienceType : AudienceType
         {
             if (string.IsNullOrWhiteSpace(request.ReferenceId))
             {
@@ -81,7 +63,7 @@ namespace Alexa.NET.ProactiveEvents
             }
 
             var content = JObject.FromObject(request).ToString(Formatting.None);
-            await Client.PostAsync(Client.BaseAddress,
+            return Client.PostAsync(Client.BaseAddress,
                     new StringContent(content, Encoding.UTF8, "application/json"));
         }
     }

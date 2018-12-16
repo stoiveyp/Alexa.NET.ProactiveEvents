@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Alexa.NET.ProactiveEvents.AudienceTypes;
 using Newtonsoft.Json;
 
@@ -23,7 +24,12 @@ namespace Alexa.NET.ProactiveEvents
         public DateTimeOffset ExpiryTime { get; set; }
         [JsonProperty("event")]
         public ProactiveEvent Event { get; set; }
-        [JsonProperty("localizedAttributes")]
+        [JsonProperty("localizedAttributes",NullValueHandling = NullValueHandling.Ignore)]
         public List<LocaleAttributes> LocaleAttributes { get; set; }
+
+        public bool ShouldSerializeLocalizedAttributes()
+        {
+            return LocaleAttributes?.Any() ?? false;
+        }
     }
 }
