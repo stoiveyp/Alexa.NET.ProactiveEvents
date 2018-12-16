@@ -10,8 +10,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EventData\" />
-  </ItemGroup>
-
 </Project>

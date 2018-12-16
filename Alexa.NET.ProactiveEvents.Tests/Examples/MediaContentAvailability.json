@@ -1,0 +1,16 @@
+﻿{
+  "name": "AMAZON.MediaContent.Available",
+  "payload": {
+    "availability": {
+      "startTime": "2018-11-20T21:00:00+00:00",
+      "provider": {
+        "name": "localizedattribute:providerName"
+      },
+      "method": "AIR"
+    },
+    "content": {
+      "name": "localizedattribute:contentName",
+      "contentType": "BOOK"
+    }
+  }
+}

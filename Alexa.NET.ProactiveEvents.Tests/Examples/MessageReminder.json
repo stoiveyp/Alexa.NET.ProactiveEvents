@@ -1,0 +1,16 @@
+﻿{
+  "name": "AMAZON.MessageAlert.Activated",
+  "payload": {
+    "state": {
+      "status": "UNREAD",
+      "freshness": "NEW"
+    },
+    "messageGroup": {
+      "creator": {
+        "name": "Andy"
+      },
+      "count": 5,
+      "urgency": "URGENT"
+    }
+  }
+}

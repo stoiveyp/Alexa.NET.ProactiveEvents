@@ -1,0 +1,19 @@
+﻿{
+  "name": "AMAZON.Occasion.Updated",
+  "payload": {
+    "state": {
+      "confirmationStatus": "CONFIRMED"
+    },
+    "occasion": {
+      "occasionType": "APPOINTMENT",
+      "subject": "localizedattribute:subject",
+      "provider": {
+        "name": "localizedattribute:providerName"
+      },
+      "bookingTime": "2018-11-20T19:16:31+00:00",
+      "broker": {
+        "name": "localizedattribute:brokerName"
+      }
+    }
+  }
+}

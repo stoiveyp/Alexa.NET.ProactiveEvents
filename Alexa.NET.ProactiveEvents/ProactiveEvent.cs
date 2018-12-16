@@ -3,15 +3,26 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.ProactiveEvents
 {
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
     public abstract class ProactiveEvent
     {
+        protected ProactiveEvent(string name)
+        {
+            Name = name;
+        }
+
         [JsonProperty("name")]
-        public abstract string Name { get; }
+        public string Name { get; }
     }
 
-    public abstract class ProtactiveEvent<T> : ProactiveEvent where T:IProactiveEventPayload
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+    public abstract class ProactiveEvent<T>:ProactiveEvent
     {
+        protected ProactiveEvent(string name) : base(name)
+        {
+        }
+
         [JsonProperty("payload")]
-        public abstract T Payload { get; set; }
+        public T Payload { get; set; }
     }
 }

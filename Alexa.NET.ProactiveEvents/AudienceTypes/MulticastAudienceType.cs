@@ -1,4 +1,4 @@
-﻿namespace Alexa.NET.ProactiveEvents
+﻿namespace Alexa.NET.ProactiveEvents.AudienceTypes
 {
     public class MulticastAudienceType : AudienceType
     {

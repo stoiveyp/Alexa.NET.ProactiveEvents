@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.ProactiveEvents
+namespace Alexa.NET.ProactiveEvents.AudienceTypes
 {
     public class UnicastAudiencePayload
     {

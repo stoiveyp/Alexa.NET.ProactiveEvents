@@ -1,0 +1,26 @@
+﻿{
+	"name": "AMAZON.SocialGameInvite.Available",
+	"payload": {
+		"invite": {
+			"inviter": {
+				"name": "Max"
+			},
+			"relationshipToInvitee": "FRIEND",
+			"inviteType": "CHALLENGE"
+		},
+		"game": {
+			"offer": "MATCH",
+			"name": "localizedattribute:gameName"
+		}
+	},
+	"localizedAttributes": [
+		{
+			"locale": "en-US",
+			"gameName": "The Red"
+		},
+		{
+			"locale": "fr-FR",
+			"gameName": "Le Rouge"
+		}
+	]
+}

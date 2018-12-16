@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Alexa.NET.ProactiveEvents.AudienceTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Alexa.NET.ProactiveEvents
 {
@@ -71,5 +73,16 @@ namespace Alexa.NET.ProactiveEvents
         //        throw new SkillNotificationException(info);
         //    }
         //}
+        public async Task Send<TAudienceType>(ProactiveEventRequest<TAudienceType> request) where TAudienceType : AudienceType
+        {
+            if (string.IsNullOrWhiteSpace(request.ReferenceId))
+            {
+                throw new ArgumentNullException(nameof(request.ReferenceId));
+            }
+
+            var content = JObject.FromObject(request).ToString(Formatting.None);
+            await Client.PostAsync(Client.BaseAddress,
+                    new StringContent(content, Encoding.UTF8, "application/json"));
+        }
     }
 }

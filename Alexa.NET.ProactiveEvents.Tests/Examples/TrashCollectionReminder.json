@@ -1,0 +1,12 @@
+﻿{
+  "name": "AMAZON.TrashCollectionAlert.Activated",
+  "payload": {
+    "alert": {
+      "garbageTypes": [
+        "COMPOSTABLE",
+        "RECYCLABLE_PLASTICS"
+      ],
+      "collectionDayOfWeek": "TUESDAY"
+    }
+  }
+}
