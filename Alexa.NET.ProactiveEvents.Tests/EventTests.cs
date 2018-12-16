@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Alexa.NET.ProactiveEvents.MessageReminders;
 using Alexa.NET.ProactiveEvents.OrderStatusUpdates;
+using Alexa.NET.ProactiveEvents.ReservationConfirmations;
 using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
@@ -91,6 +93,20 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 ExpectedArrival = DateTimeOffset.Parse("2018-12-14T23:32:00.463Z")
             };
             Assert.True(Utility.CompareJson(orderStatusUpdate, "OrderStatus.json"));
+        }
+
+        [Fact]
+        public void ReservationConfirmation()
+        {
+            OccasionType type = OccasionType.Appointment;
+            DateTimeOffset bookingTime = DateTimeOffset.Parse("2018-11-20T19:16:31+00:00");
+            string providerName= "localizedattribute:providerName";
+            string subject= "localizedattribute:subject";
+            string brokerName= "localizedattribute:brokerName";
+            var occasionUpdate = new ReservationConfirmation(ConfirmationStatus.Confirmed,
+                new Occasion(type,bookingTime,providerName,subject,brokerName));
+
+            Assert.True(Utility.CompareJson(occasionUpdate,"ReservationConfirmation.json"));
         }
     }
 }

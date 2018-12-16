@@ -10,20 +10,11 @@ namespace Alexa.NET.ProactiveEvents.OrderStatusUpdates
         {
             public OrderDetail(string sellerName)
             {
-                Seller = new OrderDetailSeller(sellerName);
+                Seller = new EntityName(sellerName);
             }
 
             [JsonProperty("seller")]
-            public OrderDetailSeller Seller { get; }
-            public class OrderDetailSeller
-            {
-                public OrderDetailSeller(string name)
-                {
-                    Name = name;
-                }
-                [JsonProperty("name")]
-                public string Name { get; }
-            }
+            public EntityName Seller { get; }
         }
         public OrderStatusUpdatePayload(string sellerName, OrderState state)
         {

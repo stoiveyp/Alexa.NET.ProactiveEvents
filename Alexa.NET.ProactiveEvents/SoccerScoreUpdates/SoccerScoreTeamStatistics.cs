@@ -8,12 +8,12 @@ namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
 
         public SoccerScoreTeamStatistics(string teamName, int score)
         {
-            Name = new SoccerScoreTeamName(teamName);
+            Name = new EntityName(teamName);
             Score = score;
         }
 
         [JsonProperty("team")]
-        public SoccerScoreTeamName Name { get; set; }
+        public EntityName Name { get; set; }
 
         [JsonProperty("score")]
         public int Score { get; set; }
