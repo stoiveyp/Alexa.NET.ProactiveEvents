@@ -6,6 +6,7 @@ using Alexa.NET.ProactiveEvents.MessageReminders;
 using Alexa.NET.ProactiveEvents.OrderStatusUpdates;
 using Alexa.NET.ProactiveEvents.ReservationConfirmations;
 using Alexa.NET.ProactiveEvents.SoccerScoreUpdates;
+using Alexa.NET.ProactiveEvents.SocialGameInvites;
 using Alexa.NET.ProactiveEvents.TrashCollectionReminders;
 using Alexa.NET.ProactiveEvents.WeatherAlerts;
 using Xunit;
@@ -131,6 +132,18 @@ namespace Alexa.NET.ProactiveEvents.Tests
                     MediaContentType.Book)
             );
             Assert.True(Utility.CompareJson(media, "MediaContentAvailability.json"));
+        }
+
+        [Fact]
+        public void SocialGameInvite()
+        {
+            var social = new SocialGameInvite("Max",
+                RelationshipToInvitee.Friend,
+                InviteType.Challenge,
+                new Game("localizedattribute:gameName",OfferType.Match));
+            social.LocalizedAttributes.Add(new LocalizedGameAttributes("en-US","The Red"));
+            social.LocalizedAttributes.Add(new LocalizedGameAttributes("fr-FR","Le Rouge"));
+            Assert.True(Utility.CompareJson(social,"SocialGameInvite.json"));
         }
     }
 }
