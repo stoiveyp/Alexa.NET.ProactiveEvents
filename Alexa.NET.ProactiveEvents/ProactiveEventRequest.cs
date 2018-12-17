@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Alexa.NET.ProactiveEvents.AudienceTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.ProactiveEvents
 {
@@ -16,11 +18,11 @@ namespace Alexa.NET.ProactiveEvents
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
     public abstract class ProactiveEventRequest
     {
-        [JsonProperty("timestamp")]
+        [JsonProperty("timestamp"),JsonConverter(typeof(EventIsoDateTimeConverter))]
         public DateTimeOffset TimeStamp { get; set; }
         [JsonProperty("referenceId")]
         public string ReferenceId { get; set; }
-        [JsonProperty("expiryTime")]
+        [JsonProperty("expiryTime"), JsonConverter(typeof(EventIsoDateTimeConverter))]
         public DateTimeOffset ExpiryTime { get; set; }
         [JsonProperty("event")]
         public ProactiveEvent Event { get; set; }
@@ -30,6 +32,15 @@ namespace Alexa.NET.ProactiveEvents
         public bool ShouldSerializeLocalizedAttributes()
         {
             return LocaleAttributes?.Any() ?? false;
+        }
+    }
+
+    internal class EventIsoDateTimeConverter : IsoDateTimeConverter
+    {
+        public EventIsoDateTimeConverter()
+        {
+            this.DateTimeStyles = DateTimeStyles.AdjustToUniversal;
+            this.DateTimeFormat = "yyyy-MM-ddTHH:mm:ssZ";
         }
     }
 }

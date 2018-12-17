@@ -44,6 +44,7 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
         public EntityName Broker { get; set; }
 
         [JsonProperty("bookingTime")]
+        [JsonConverter(typeof(EventIsoDateTimeConverter))]
         public DateTimeOffset BookingTime { get; set; }
     }
 }

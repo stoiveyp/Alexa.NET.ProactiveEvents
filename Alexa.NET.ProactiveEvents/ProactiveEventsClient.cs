@@ -25,7 +25,6 @@ namespace Alexa.NET.ProactiveEvents
         static ProactiveEventsClient()
         {
             Serializer = JsonSerializer.CreateDefault();
-            Serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
         }
 
         public ProactiveEventsClient(string endpointBase, string accessToken) : this(endpointBase, accessToken,
