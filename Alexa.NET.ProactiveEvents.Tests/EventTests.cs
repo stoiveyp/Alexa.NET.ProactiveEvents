@@ -41,11 +41,11 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void BroadcastEventGeneratesCorrectJson()
         {
-            var userEvent = new BroadcastEventRequest
+            var broadcastEvent = new BroadcastEventRequest
             {
-                TimeStamp = DateTimeOffset.Parse("2018-06-18T22:10:01.00Z"),
+                TimeStamp = DateTimeOffset.Parse("2018-06-18T22:10:01.00+00:00"),
                 ReferenceId = "unique-id-of-this-instance",
-                ExpiryTime = DateTimeOffset.Parse("2018-06-19T22:10:01.00Z"),
+                ExpiryTime = DateTimeOffset.Parse("2018-06-19T22:10:01.00+00:00"),
                 Event = new DummyEvent(),
                 LocaleAttributes = new[]
                 {
@@ -53,7 +53,7 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 }.ToList()
             };
 
-            Assert.True(Utility.CompareJson(userEvent, "Broadcast.json"));
+            Assert.True(Utility.CompareJson(broadcastEvent, "Broadcast.json"));
         }
 
         [Fact]

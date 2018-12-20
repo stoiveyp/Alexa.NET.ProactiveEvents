@@ -26,21 +26,16 @@ namespace Alexa.NET.ProactiveEvents
         public DateTimeOffset ExpiryTime { get; set; }
         [JsonProperty("event")]
         public ProactiveEvent Event { get; set; }
-        [JsonProperty("localizedAttributes",NullValueHandling = NullValueHandling.Ignore)]
-        public List<LocaleAttributes> LocaleAttributes { get; set; }
-
-        public bool ShouldSerializeLocalizedAttributes()
-        {
-            return LocaleAttributes?.Any() ?? false;
-        }
+        [JsonProperty("localizedAttributes")]
+        public List<LocaleAttributes> LocaleAttributes { get; set; } = new List<LocaleAttributes>();
     }
 
     internal class EventIsoDateTimeConverter : IsoDateTimeConverter
     {
         public EventIsoDateTimeConverter()
         {
-            this.DateTimeStyles = DateTimeStyles.AdjustToUniversal;
-            this.DateTimeFormat = "yyyy-MM-ddTHH:mm:ssZ";
+          //  DateTimeStyles = DateTimeStyles.AdjustToUniversal;
+            DateTimeFormat = "yyyy-MM-ddTHH:mm:ssK";
         }
     }
 }

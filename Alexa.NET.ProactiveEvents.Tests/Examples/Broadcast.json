@@ -1,7 +1,7 @@
 ﻿{
-  "timestamp": "2018-06-18T22:10:01.00Z",
+  "timestamp": "2018-06-18T22:10:01.00+00:00",
   "referenceId": "unique-id-of-this-instance",
-  "expiryTime": "2018-06-19T22:10:01.00Z",
+  "expiryTime": "2018-06-19T22:10:01.00+00:00",
   "event": {
     "name": "test"
   },
@@ -12,6 +12,7 @@
     }
   ],
   "relevantAudience": {
-    "type": "Multicast"
+    "type": "Multicast",
+    "payload": {}
   }
 }
