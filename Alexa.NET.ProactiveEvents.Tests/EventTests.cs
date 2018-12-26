@@ -105,13 +105,15 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             OccasionType type = OccasionType.Appointment;
             DateTimeOffset bookingTime = DateTimeOffset.Parse("2018-11-20T19:16:31+00:00");
-            string providerName = "localizedattribute:providerName";
-            string subject = "localizedattribute:subject";
-            string brokerName = "localizedattribute:brokerName";
             var occasionUpdate = new ReservationConfirmation(ReservationConfirmationStatus.Confirmed,
-                new Occasion(type, bookingTime, providerName, subject, brokerName));
+                new Occasion(
+                    type, 
+                    bookingTime, 
+                    new LocaleAttributes("en-GB","provider") , 
+                    new LocaleAttributes("en-GB","subject"), 
+                    new LocaleAttributes("en-GB","broker")));
 
-            Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json"));
+            Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json","payload.occasion.bookingTime"));
         }
 
         [Fact]
