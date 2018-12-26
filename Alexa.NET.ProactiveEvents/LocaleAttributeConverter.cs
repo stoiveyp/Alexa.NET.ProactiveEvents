@@ -27,7 +27,7 @@ namespace Alexa.NET.ProactiveEvents
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(LocaleAttribute);
+            return objectType == typeof(LocaleAttributes);
         }
     }
 }
