@@ -21,6 +21,11 @@ namespace Alexa.NET.ProactiveEvents.WeatherAlerts
 
         public override IEnumerable<KeyValuePair<string, List<LocaleAttribute>>> GetLocales()
         {
+            if (Payload.WeatherAlert.Source == null)
+            {
+                return new KeyValuePair<string, List<LocaleAttribute>>[]{};
+            }
+
             return new[]
             {
                 new KeyValuePair<string, List<LocaleAttribute>>("source", this.Payload.WeatherAlert.Source),
