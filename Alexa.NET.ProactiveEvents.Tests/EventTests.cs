@@ -24,10 +24,13 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 TimeStamp = DateTimeOffset.Parse("2018-06-18T22:10:01.00Z"),
                 ReferenceId = "unique-id-of-this-instance",
                 ExpiryTime = DateTimeOffset.Parse("2018-06-19T22:10:01.00Z"),
-                Event = new DummyEvent()
+                Event = new DummyEvent(new Dictionary<string, List<LocaleAttribute>>
+                {
+                    {"testy",new List<LocaleAttribute>(new []{new LocaleAttribute("en-GB","thing"), }) }
+                })
             };
             Assert.Equal("userId", userEvent.Audience.Payload.User);
-            Assert.True(Utility.CompareJson(userEvent, "Individual.json"));
+            Assert.True(Utility.CompareJson(userEvent, "Individual.json","timestamp","expiryTime"));
         }
 
         private class DummyEvent : ProactiveEvent
