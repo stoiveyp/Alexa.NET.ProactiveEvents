@@ -61,7 +61,7 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void WeatherAlert()
         {
-            var weatherAlert = new WeatherAlert(WeatherAlertType.Tornado, "localizedattribute:source");
+            var weatherAlert = new WeatherAlert(WeatherAlertType.Tornado, new LocaleAttributes("en-GB","Steve Stuff"));
             Assert.True(Utility.CompareJson(weatherAlert, "WeatherAlert.json"));
         }
 
