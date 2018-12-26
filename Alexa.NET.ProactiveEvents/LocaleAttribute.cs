@@ -18,6 +18,11 @@ namespace Alexa.NET.ProactiveEvents
         {
             this.Add(new LocaleAttribute(locale, value));
         }
+
+        public void Add(string locale, string value)
+        {
+            this.Add(new LocaleAttribute(locale,value));
+        }
     }
 
     public class LocaleAttribute
