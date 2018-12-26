@@ -11,12 +11,17 @@ namespace Alexa.NET.ProactiveEvents.Tests
     {
         private const string ExamplesPath = "Examples";
 
-        public static bool CompareJson(object actual, string expectedFile)
+        public static bool CompareJson(object actual, string expectedFile, params string[] ignored)
         {
             var actualJObject = JObject.FromObject(actual);
             var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
             var expectedJObject = JObject.Parse(expected);
-            Console.WriteLine(actualJObject);
+            foreach (var toIgnore in ignored)
+            {
+                actualJObject.SelectToken(toIgnore).Parent.Remove();
+                expectedJObject.SelectToken(toIgnore).Parent.Remove();
+            }
+
             return JToken.DeepEquals(expectedJObject, actualJObject);
         }
 

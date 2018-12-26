@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.ProactiveEvents
 {
-    public class LocaleAttributes
+    public class LocaleAttributeCollection
     {
-        public LocaleAttributes(string locale)
+        public LocaleAttributeCollection(string locale)
         {
             Locale = locale;
         }

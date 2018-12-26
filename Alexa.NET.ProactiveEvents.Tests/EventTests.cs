@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification;
@@ -23,43 +25,44 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 TimeStamp = DateTimeOffset.Parse("2018-06-18T22:10:01.00Z"),
                 ReferenceId = "unique-id-of-this-instance",
                 ExpiryTime = DateTimeOffset.Parse("2018-06-19T22:10:01.00Z"),
-                Event = new DummyEvent(),
-                LocaleAttributes = new[]
+                Event = new DummyEvent(new Dictionary<string, List<LocaleAttribute>>
                 {
-                    new LocaleAttributes("en-GB") {Properties = {{"testy", "thing"}}}
-                }.ToList()
+                    {"testy",new List<LocaleAttribute>(new []{new LocaleAttribute("en-GB","thing"), }) }
+                })
             };
             Assert.Equal("userId", userEvent.Audience.Payload.User);
-            Assert.True(Utility.CompareJson(userEvent, "Individual.json"));
+            Assert.True(Utility.CompareJson(userEvent, "Individual.json","timestamp","expiryTime"));
         }
 
         private class DummyEvent : ProactiveEvent
         {
-            public DummyEvent() : base("test") { }
+            private Dictionary<string, List<LocaleAttribute>> Locales { get; }
+
+            public DummyEvent():this(new Dictionary<string, List<LocaleAttribute>>()) { }
+
+            public DummyEvent(Dictionary<string, List<LocaleAttribute>> locales) : base("test")
+            {
+                Locales = locales;
+            }
+
+            public override IEnumerable<KeyValuePair<string, List<LocaleAttribute>>> GetLocales()
+            {
+                return Locales;
+            }
         }
 
         [Fact]
         public void BroadcastEventGeneratesCorrectJson()
         {
-            var broadcastEvent = new BroadcastEventRequest
-            {
-                TimeStamp = DateTimeOffset.Parse("2018-06-18T22:10:01.00+00:00"),
-                ReferenceId = "unique-id-of-this-instance",
-                ExpiryTime = DateTimeOffset.Parse("2018-06-19T22:10:01.00+00:00"),
-                Event = new DummyEvent(),
-                LocaleAttributes = new[]
-                {
-                    new LocaleAttributes("en-GB") {Properties = {{"testy", "thing"}}}
-                }.ToList()
-            };
+            var broadcastEvent = new BroadcastEventRequest();
 
-            Assert.True(Utility.CompareJson(broadcastEvent, "Broadcast.json"));
+            Assert.True(Utility.CompareJson(broadcastEvent.Audience, "Broadcast.json"));
         }
 
         [Fact]
         public void WeatherAlert()
         {
-            var weatherAlert = new WeatherAlert(WeatherAlertType.Tornado, "localizedattribute:source");
+            var weatherAlert = new WeatherAlert(WeatherAlertType.Tornado, new LocaleAttributes("en-GB","Steve Stuff"));
             Assert.True(Utility.CompareJson(weatherAlert, "WeatherAlert.json"));
         }
 
@@ -70,7 +73,7 @@ namespace Alexa.NET.ProactiveEvents.Tests
             (
                 new SoccerScoreUpdateDetail("Arsenal", 1),
                 new SoccerScoreSportsEvent(
-                    "localizedattribute:eventLeagueName",
+                    new LocaleAttributes("en-GB","imaginaryLeague"),
                     new SoccerScoreTeamStatistics("Oranges", 1),
                     new SoccerScoreTeamStatistics("Apples", 2))
             );
@@ -90,12 +93,12 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void OrderUpdate()
         {
-            var orderStatusUpdate = new OrderStatusUpdate("localizedattribute:sellerName", OrderStatus.Shipped);
+            var orderStatusUpdate = new OrderStatusUpdate(new LocaleAttributes("en-GB","stuff"), OrderStatus.Shipped);
             orderStatusUpdate.Payload.State.DeliveryDetails = new ParcelDelivery
             {
                 ExpectedArrival = DateTimeOffset.Parse("2018-12-14T23:32:00.463Z")
             };
-            Assert.True(Utility.CompareJson(orderStatusUpdate, "OrderStatus.json"));
+            Assert.True(Utility.CompareJson(orderStatusUpdate.Payload, "OrderStatus.json", "state.deliveryDetails.expectedArrival"));
         }
 
         [Fact]
@@ -103,13 +106,15 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             OccasionType type = OccasionType.Appointment;
             DateTimeOffset bookingTime = DateTimeOffset.Parse("2018-11-20T19:16:31+00:00");
-            string providerName = "localizedattribute:providerName";
-            string subject = "localizedattribute:subject";
-            string brokerName = "localizedattribute:brokerName";
             var occasionUpdate = new ReservationConfirmation(ReservationConfirmationStatus.Confirmed,
-                new Occasion(type, bookingTime, providerName, subject, brokerName));
+                new Occasion(
+                    type, 
+                    bookingTime, 
+                    new LocaleAttributes("en-GB","provider") , 
+                    new LocaleAttributes("en-GB","subject"), 
+                    new LocaleAttributes("en-GB","broker")));
 
-            Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json"));
+            Assert.True(Utility.CompareJson(occasionUpdate, "ReservationConfirmation.json","payload.occasion.bookingTime"));
         }
 
         [Fact]
@@ -126,9 +131,9 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 new MediaContentAvailabilityDetail(
                     DateTimeOffset.Parse("2018-11-20T21:00:00+00:00"),
                     MediaContentMethod.Air,
-                    "localizedattribute:providerName"),
+                    new LocaleAttributes("en-GB","provider name")),
                 new MediaContent(
-                    "localizedattribute:contentName",
+                    new LocaleAttributes("en-GB","content name"),
                     MediaContentType.Book)
             );
             Assert.True(Utility.CompareJson(media, "MediaContentAvailability.json"));
@@ -140,10 +145,10 @@ namespace Alexa.NET.ProactiveEvents.Tests
             var social = new SocialGameInvite("Max",
                 RelationshipToInvitee.Friend,
                 InviteType.Challenge,
-                new Game("localizedattribute:gameName",OfferType.Match));
-            social.LocalizedAttributes.Add(new LocalizedGameAttributes("en-US","The Red"));
-            social.LocalizedAttributes.Add(new LocalizedGameAttributes("fr-FR","Le Rouge"));
-            Assert.True(Utility.CompareJson(social,"SocialGameInvite.json"));
+                new Game("localizedattribute:gameName", OfferType.Match));
+            social.LocalizedAttributes.Add(new LocalizedGameAttributes("en-US", "The Red"));
+            social.LocalizedAttributes.Add(new LocalizedGameAttributes("fr-FR", "Le Rouge"));
+            Assert.True(Utility.CompareJson(social, "SocialGameInvite.json"));
         }
     }
 }

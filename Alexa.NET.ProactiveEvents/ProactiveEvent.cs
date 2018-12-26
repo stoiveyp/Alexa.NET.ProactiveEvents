@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.ProactiveEvents
@@ -13,6 +15,11 @@ namespace Alexa.NET.ProactiveEvents
 
         [JsonProperty("name")]
         public string Name { get; }
+
+        public virtual IEnumerable<KeyValuePair<string,List<LocaleAttribute>>> GetLocales()
+        {
+            return new KeyValuePair<string, List<LocaleAttribute>>[]{};
+        }
     }
 
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]

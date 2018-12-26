@@ -1,26 +1,26 @@
 ﻿{
-	"name": "AMAZON.SportsEvent.Updated",
-	"payload": {
-		"update": {
-			"scoreEarned": 1,
-			"teamName": "Arsenal"
-		},
-		"sportsEvent": {
-			"eventLeague": {
-				"name": "localizedattribute:eventLeagueName"
-			},
-			"homeTeamStatistic": {
-				"team": {
-					"name": "Oranges"
-				},
-				"score": 1
-			},
-			"awayTeamStatistic": {
-				"team": {
-					"name": "Apples"
-				},
-				"score": 2
-			}
-		}
-	}
+  "name": "AMAZON.SportsEvent.Updated",
+  "payload": {
+    "update": {
+      "scoreEarned": 1,
+      "teamName": "Arsenal"
+    },
+    "sportsEvent": {
+      "eventLeague": {
+        "name": "localizedattribute:eventLeagueName"
+      },
+      "homeTeamStatistic": {
+        "team": {
+          "name": "Oranges"
+        },
+        "score": 1
+      },
+      "awayTeamStatistic": {
+        "team": {
+          "name": "Apples"
+        },
+        "score": 2
+      }
+    }
+  }
 }

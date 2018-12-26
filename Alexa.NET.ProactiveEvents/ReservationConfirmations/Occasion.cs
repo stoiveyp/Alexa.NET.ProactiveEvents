@@ -10,38 +10,35 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
 
         public Occasion(OccasionType type,
             DateTimeOffset bookingTime,
-            string providerName,
-            string subject)
+            LocaleAttributes providerName,
+            LocaleAttributes subject)
         {
             Type = type;
             BookingTime = bookingTime;
-            Provider = new EntityName(providerName);
+            Provider = new ProviderName(providerName);
             Subject = subject;
         }
 
         public Occasion(OccasionType type,
             DateTimeOffset bookingTime,
-            string providerName,
-            string subject,
-            string brokerName) : this(type, bookingTime, providerName, subject)
+            LocaleAttributes providerName,
+            LocaleAttributes subject,
+            LocaleAttributes brokerName) : this(type, bookingTime, providerName, subject)
         {
-            if (!string.IsNullOrWhiteSpace(brokerName))
-            {
-                Broker = new EntityName(brokerName);
-            }
+            Broker = new BrokerName(brokerName);
         }
 
         [JsonProperty("occasionType"), JsonConverter(typeof(StringEnumConverter))]
         public OccasionType Type { get; set; }
 
-        [JsonProperty("subject")]
-        public string Subject { get; set; }
+        [JsonProperty("subject"), JsonConverter(typeof(LocaleAttributeConverter), "subject")]
+        public LocaleAttributes Subject { get; set; }
 
         [JsonProperty("provider")]
-        public EntityName Provider { get; set; }
+        public ProviderName Provider { get; set; }
 
         [JsonProperty("broker", NullValueHandling = NullValueHandling.Ignore)]
-        public EntityName Broker { get; set; }
+        public BrokerName Broker { get; set; }
 
         [JsonProperty("bookingTime")]
         [JsonConverter(typeof(EventIsoDateTimeConverter))]

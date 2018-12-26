@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,7 +11,7 @@ namespace Alexa.NET.ProactiveEvents
 {
     public class ProactiveEventsClient
     {
-        public const string DevelopmentEndpoint = "https://api.amazonalexa.com/v1/proactiveEvents/stages/development";
+        public const string DevelopmentPathExtension = "/stages/development";
         public const string NorthAmericaEndpoint = "https://api.amazonalexa.com/v1/proactiveEvents";
         public const string EuropeEndpoint = "https://api.eu.amazonalexa.com/v1/proactiveEvents";
         public const string FarEastEndpoint = "https://api.fe.amazonalexa.com/v1/proactiveEvents";
@@ -27,18 +25,18 @@ namespace Alexa.NET.ProactiveEvents
             Serializer = JsonSerializer.CreateDefault();
         }
 
-        public ProactiveEventsClient(string endpointBase, string accessToken) : this(endpointBase, accessToken,
-            new HttpClient())
+        public ProactiveEventsClient(string endpointBase, string accessToken,bool isDevelopment = true) : this(endpointBase, accessToken,
+            new HttpClient(), isDevelopment)
         {
 
         }
 
-        public ProactiveEventsClient(string endpointBase, string accessToken, HttpClient client)
+        public ProactiveEventsClient(string endpointBase, string accessToken, HttpClient client,bool isDevelopment = true)
         {
             client = client ?? new HttpClient();
             if (client.BaseAddress == null)
             {
-                client.BaseAddress = new Uri(endpointBase, UriKind.Absolute);
+                client.BaseAddress = new Uri(endpointBase + (isDevelopment ? DevelopmentPathExtension : string.Empty), UriKind.Absolute);
             }
 
             if (client.DefaultRequestHeaders.Authorization == null)
