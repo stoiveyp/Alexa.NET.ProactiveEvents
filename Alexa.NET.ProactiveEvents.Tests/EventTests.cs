@@ -89,12 +89,12 @@ namespace Alexa.NET.ProactiveEvents.Tests
         [Fact]
         public void OrderUpdate()
         {
-            var orderStatusUpdate = new OrderStatusUpdate("localizedattribute:sellerName", OrderStatus.Shipped);
+            var orderStatusUpdate = new OrderStatusUpdate(new LocaleAttributes("en-GB","stuff"), OrderStatus.Shipped);
             orderStatusUpdate.Payload.State.DeliveryDetails = new ParcelDelivery
             {
                 ExpectedArrival = DateTimeOffset.Parse("2018-12-14T23:32:00.463Z")
             };
-            Assert.True(Utility.CompareJson(orderStatusUpdate, "OrderStatus.json"));
+            Assert.True(Utility.CompareJson(orderStatusUpdate.Payload, "OrderStatus.json", "state.deliveryDetails.expectedArrival"));
         }
 
         [Fact]

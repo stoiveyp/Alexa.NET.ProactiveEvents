@@ -8,21 +8,21 @@ namespace Alexa.NET.ProactiveEvents.OrderStatusUpdates
     {
         public class OrderDetail
         {
-            public OrderDetail(string sellerName)
+            public OrderDetail(LocaleAttributes sellerName)
             {
-                Seller = new EntityName(sellerName);
+                Seller = new SellerName(sellerName);
             }
 
             [JsonProperty("seller")]
-            public EntityName Seller { get; }
+            public SellerName Seller { get; }
         }
-        public OrderStatusUpdatePayload(string sellerName, OrderState state)
+        public OrderStatusUpdatePayload(LocaleAttributes sellerName, OrderState state)
         {
             State = state;
             Order = new OrderDetail(sellerName);
         }
 
-        public OrderStatusUpdatePayload(string sellerName, OrderStatus status) : this(sellerName, new OrderState(status))
+        public OrderStatusUpdatePayload(LocaleAttributes sellerName, OrderStatus status) : this(sellerName, new OrderState(status))
         {
 
         }
@@ -32,5 +32,18 @@ namespace Alexa.NET.ProactiveEvents.OrderStatusUpdates
 
         [JsonProperty("order")]
         public OrderDetail Order { get; }
+    }
+
+    public class SellerName
+    {
+        public SellerName() { }
+
+        public SellerName(LocaleAttributes name)
+        {
+            Name = name;
+        }
+
+        [JsonProperty("name"), JsonConverter(typeof(LocaleAttributeConverter), "sellerName")]
+        public LocaleAttributes Name { get; set; }
     }
 }
