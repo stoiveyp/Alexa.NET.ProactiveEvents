@@ -17,21 +17,21 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             var http = new HttpClient();
             var client = new ProactiveEventsClient(http);
-            Assert.Equal(http,client.Client);
+            Assert.Equal(http, client.Client);
         }
 
         [Fact]
         public void TokenConstructor()
         {
-            var client = new ProactiveEventsClient(ProactiveEventsClient.DevelopmentEndpoint,"token");
-            Assert.Equal(ProactiveEventsClient.DevelopmentEndpoint,client.Client.BaseAddress.ToString());
-            Assert.Equal("token",client.Client.DefaultRequestHeaders.Authorization.Parameter);
+            var client = new ProactiveEventsClient(ProactiveEventsClient.EuropeEndpoint, "token");
+            Assert.Equal(ProactiveEventsClient.EuropeEndpoint + ProactiveEventsClient.DevelopmentPathExtension, client.Client.BaseAddress.ToString());
+            Assert.Equal("token", client.Client.DefaultRequestHeaders.Authorization.Parameter);
         }
 
         [Fact]
         public async Task ThrowsExceptionWithoutReference()
         {
-            var client = new ProactiveEventsClient(ProactiveEventsClient.DevelopmentEndpoint, "token");
+            var client = new ProactiveEventsClient(ProactiveEventsClient.EuropeEndpoint, "token");
 
             var alert = new WeatherAlert(WeatherAlertType.Tornado);
             var request = new BroadcastEventRequest(alert)
@@ -48,11 +48,11 @@ namespace Alexa.NET.ProactiveEvents.Tests
         {
             var http = new HttpClient(new ActionHandler(req =>
             {
-                Assert.Equal(HttpMethod.Post,req.Method);
-                Assert.Equal("application/json",req.Content.Headers.ContentType.MediaType);
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("application/json", req.Content.Headers.ContentType.MediaType);
                 return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK));
             }));
-            var client = new ProactiveEventsClient(ProactiveEventsClient.DevelopmentEndpoint, "token",http);
+            var client = new ProactiveEventsClient(ProactiveEventsClient.EuropeEndpoint, "token", http);
 
             var alert = new WeatherAlert(WeatherAlertType.Tornado);
             var request = new BroadcastEventRequest(alert)

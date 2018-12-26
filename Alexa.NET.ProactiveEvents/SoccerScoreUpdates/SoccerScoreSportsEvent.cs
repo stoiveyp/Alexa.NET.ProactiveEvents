@@ -7,7 +7,7 @@ namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
 {
     public class SoccerScoreSportsEvent
     {
-        public SoccerScoreSportsEvent(string leagueName, SoccerScoreTeamStatistics homeTeam, SoccerScoreTeamStatistics awayTeam)
+        public SoccerScoreSportsEvent(LocaleAttributes leagueName, SoccerScoreTeamStatistics homeTeam, SoccerScoreTeamStatistics awayTeam)
         {
             EventLeague = new SoccerScoreEventLeague(leagueName);
             HomeTeamStatistic = homeTeam;

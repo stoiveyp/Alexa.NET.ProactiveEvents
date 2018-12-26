@@ -4,12 +4,17 @@ namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
 {
     public class SoccerScoreEventLeague
     {
-        public SoccerScoreEventLeague(string name)
+        public SoccerScoreEventLeague(LocaleAttributes name)
         {
             Name = name;
         }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public SoccerScoreEventLeague(LocaleAttribute name)
+        {
+            Name = new LocaleAttributes(name);
+        }
+
+        [JsonProperty("name"),JsonConverter(typeof(LocaleAttributeConverter), "eventLeagueName")]
+        public LocaleAttributes Name { get; set; }
     }
 }

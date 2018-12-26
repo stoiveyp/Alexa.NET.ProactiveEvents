@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Alexa.NET.ProactiveEvents.AudienceTypes;
+using Alexa.NET.ProactiveEvents.SocialGameInvites;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace Alexa.NET.ProactiveEvents
 {
@@ -18,6 +18,11 @@ namespace Alexa.NET.ProactiveEvents
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
     public abstract class ProactiveEventRequest
     {
+        protected ProactiveEventRequest()
+        {
+            LocaleAttributes = new LocaleAttributeList(this);
+        }
+
         [JsonProperty("timestamp"),JsonConverter(typeof(EventIsoDateTimeConverter))]
         public DateTimeOffset TimeStamp { get; set; }
         [JsonProperty("referenceId")]
@@ -26,16 +31,17 @@ namespace Alexa.NET.ProactiveEvents
         public DateTimeOffset ExpiryTime { get; set; }
         [JsonProperty("event")]
         public ProactiveEvent Event { get; set; }
-        [JsonProperty("localizedAttributes")]
-        public List<LocaleAttributes> LocaleAttributes { get; set; } = new List<LocaleAttributes>();
+
+        [JsonProperty("localizedAttributes"),JsonConverter(typeof(LocalAttributeListConverter))]
+        public LocaleAttributeList LocaleAttributes { get; }
     }
 
-    internal class EventIsoDateTimeConverter : IsoDateTimeConverter
+    public class LocaleAttributeList
     {
-        public EventIsoDateTimeConverter()
+        internal ProactiveEventRequest Request { get; }
+        public LocaleAttributeList(ProactiveEventRequest proactiveEventRequest)
         {
-          //  DateTimeStyles = DateTimeStyles.AdjustToUniversal;
-            DateTimeFormat = "yyyy-MM-ddTHH:mm:ssK";
+            Request = proactiveEventRequest;
         }
     }
 }

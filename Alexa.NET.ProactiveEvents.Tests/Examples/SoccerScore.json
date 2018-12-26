@@ -1,6 +1,9 @@
 ﻿{
-	"name": "AMAZON.SportsEvent.Updated",
-	"payload": {
+  "name": "AMAZON.SportsEvent.Updated",
+  "localizedAttributes": {
+
+  },
+  "payload": {
 		"update": {
 			"scoreEarned": 1,
 			"teamName": "Arsenal"

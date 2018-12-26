@@ -1,4 +1,6 @@
-﻿namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
+﻿using System.Collections.Generic;
+
+namespace Alexa.NET.ProactiveEvents.SoccerScoreUpdates
 {
     public class SoccerScoreUpdate:ProactiveEvent<SoccerScoreUpdatePayload>
     {
@@ -19,6 +21,14 @@
         :this(new SoccerScoreUpdatePayload(eventInformation, update))
         {
             
+        }
+
+        public override IEnumerable<KeyValuePair<string, List<LocaleAttribute>>> GetLocales()
+        {
+            return new[]
+            {
+                new KeyValuePair<string, List<LocaleAttribute>>("eventLeagueName", this.Payload.Event.EventLeague.Name),
+            };
         }
     }
 }
