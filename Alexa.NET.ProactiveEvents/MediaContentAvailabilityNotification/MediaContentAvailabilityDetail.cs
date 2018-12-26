@@ -13,13 +13,10 @@ namespace Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification
             Method = method;
         }
 
-        public MediaContentAvailabilityDetail(DateTimeOffset startTime, MediaContentMethod method, string providerName)
+        public MediaContentAvailabilityDetail(DateTimeOffset startTime, MediaContentMethod method, LocaleAttributes providerName)
             : this(startTime, method)
         {
-            if (!string.IsNullOrWhiteSpace(providerName))
-            {
-                Provider = new EntityName(providerName);
-            }
+            Provider = new ProviderName(providerName);
         }
 
         [JsonProperty("method"), JsonConverter(typeof(StringEnumConverter))]
@@ -29,6 +26,6 @@ namespace Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification
         public DateTimeOffset StartTime { get; set; }
 
         [JsonProperty("provider", NullValueHandling = NullValueHandling.Ignore)]
-        public EntityName Provider { get; set; }
+        public ProviderName Provider { get; set; }
     }
 }

@@ -14,6 +14,13 @@ namespace Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification
             Payload = new MediaContentAvailabilityPayload(availability, content);
         }
 
-
+        public override IEnumerable<KeyValuePair<string, List<LocaleAttribute>>> GetLocales()
+        {
+            return new[]
+            {
+                new KeyValuePair<string, List<LocaleAttribute>>("contentName", Payload.Content.Name),
+                new KeyValuePair<string, List<LocaleAttribute>>("providerName", Payload.Detail.Provider.Name),
+            };
+        }
     }
 }

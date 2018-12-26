@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Alexa.NET.ProactiveEvents.MediaContentAvailabilityNotification;
@@ -130,9 +131,9 @@ namespace Alexa.NET.ProactiveEvents.Tests
                 new MediaContentAvailabilityDetail(
                     DateTimeOffset.Parse("2018-11-20T21:00:00+00:00"),
                     MediaContentMethod.Air,
-                    "localizedattribute:providerName"),
+                    new LocaleAttributes("en-GB","provider name")),
                 new MediaContent(
-                    "localizedattribute:contentName",
+                    new LocaleAttributes("en-GB","content name"),
                     MediaContentType.Book)
             );
             Assert.True(Utility.CompareJson(media, "MediaContentAvailability.json"));
