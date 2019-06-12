@@ -7,7 +7,7 @@ namespace Alexa.NET.ProactiveEvents.ReservationConfirmations
         [EnumMember(Value = "CONFIRMED")] Confirmed,
         [EnumMember(Value = "CANCELED")] Canceled,
         [EnumMember(Value = "RESCHEDULED")] Rescheduled,
-        [EnumMember(Value = "REQUESTED")] Requested,
+        [EnumMember(Value = "RECEIVED")] Received,
         [EnumMember(Value = "CREATED")] Created,
         [EnumMember(Value = "UPDATED")] Updated
     }

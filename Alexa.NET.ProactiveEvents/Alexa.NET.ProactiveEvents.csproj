@@ -3,13 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <Description>Small library to help with the Alexa ProactiveEvents API</Description>
-    <PackageLicenseUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</RepositoryUrl>
     <PackageTags>alexa,api</PackageTags>
-    <PackageReleaseNotes>Initial API and events support</PackageReleaseNotes>
+    <PackageReleaseNotes>Update occassion confirmation status from Requested to Received</PackageReleaseNotes>
     <Authors>Steven Pears</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +22,18 @@
 
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\.nuget\packages\newtonsoft.json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Alexa.NET.Management\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
