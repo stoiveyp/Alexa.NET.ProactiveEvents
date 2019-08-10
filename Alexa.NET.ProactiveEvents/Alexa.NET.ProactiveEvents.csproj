@@ -1,23 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Small library to help with the Alexa ProactiveEvents API</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</RepositoryUrl>
     <PackageTags>alexa,api</PackageTags>
-    <PackageReleaseNotes>Update occassion confirmation status from Requested to Received</PackageReleaseNotes>
+    <PackageReleaseNotes>update to netstandard2.0</PackageReleaseNotes>
     <Authors>Steven Pears</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <Version>1.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.5.7" />
+    <PackageReference Include="Alexa.NET" Version="1.8.0" />
   </ItemGroup>
 
   <ItemGroup>
