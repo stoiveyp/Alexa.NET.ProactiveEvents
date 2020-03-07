@@ -6,10 +6,10 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</RepositoryUrl>
     <PackageTags>alexa,api</PackageTags>
-    <PackageReleaseNotes>update to netstandard2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Stop culture from causing invalid schema output (thanks @gdantuono!)</PackageReleaseNotes>
     <Authors>Steven Pears</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

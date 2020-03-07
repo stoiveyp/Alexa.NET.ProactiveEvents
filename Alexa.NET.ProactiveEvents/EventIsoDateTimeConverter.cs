@@ -6,7 +6,7 @@ namespace Alexa.NET.ProactiveEvents
     {
         public EventIsoDateTimeConverter()
         {
-            //  DateTimeStyles = DateTimeStyles.AdjustToUniversal;
+            Culture = System.Globalization.CultureInfo.InvariantCulture;
             DateTimeFormat = "yyyy-MM-ddTHH:mm:ssK";
         }
     }
