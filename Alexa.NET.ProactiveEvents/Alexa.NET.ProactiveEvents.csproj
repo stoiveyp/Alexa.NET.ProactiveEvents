@@ -6,10 +6,10 @@
     <PackageProjectUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stoiveyp/Alexa.NET.ProactiveEvents</RepositoryUrl>
     <PackageTags>alexa,api</PackageTags>
-    <PackageReleaseNotes>Stop culture from causing invalid schema output (thanks @gdantuono!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed clash causing request handler to fail</PackageReleaseNotes>
     <Authors>Steven Pears</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

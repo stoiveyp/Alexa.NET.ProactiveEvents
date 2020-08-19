@@ -13,7 +13,15 @@ namespace Alexa.NET.ProactiveEvents
         {
             if (!RequestConverter.RequestConverters.OfType<ProactiveSubscriptionChangedRequestHandler>().Any())
             {
-                RequestConverter.RequestConverters.Add(this);
+                var index = RequestConverter.RequestConverters.FindIndex(converter => converter is SkillEventRequestTypeConverter);
+                if (index == -1)
+                {
+                    RequestConverter.RequestConverters.Add(this);
+                }
+                else
+                {
+                    RequestConverter.RequestConverters.Insert(index,this);
+                }
             }
         }
 

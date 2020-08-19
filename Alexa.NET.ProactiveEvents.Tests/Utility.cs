@@ -18,8 +18,8 @@ namespace Alexa.NET.ProactiveEvents.Tests
             var expectedJObject = JObject.Parse(expected);
             foreach (var toIgnore in ignored)
             {
-                actualJObject.SelectToken(toIgnore).Parent.Remove();
-                expectedJObject.SelectToken(toIgnore).Parent.Remove();
+                actualJObject.SelectToken(toIgnore)?.Parent?.Remove();
+                expectedJObject.SelectToken(toIgnore)?.Parent?.Remove();
             }
 
             return JToken.DeepEquals(expectedJObject, actualJObject);
